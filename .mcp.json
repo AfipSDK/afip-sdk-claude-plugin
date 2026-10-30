@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "afipsdk": {
+      "type": "http",
+      "url": "https://app.afipsdk.com/mcp",
+      "oauth": {
+        "clientId": "claude-code",
+        "callbackPort": 19823
+      }
+    }
+  }
+}

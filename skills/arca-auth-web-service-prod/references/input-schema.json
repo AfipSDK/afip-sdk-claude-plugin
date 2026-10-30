@@ -1,0 +1,49 @@
+{
+  "type": "object",
+  "properties": {
+    "cuit": {
+      "description": "CUIT de 11 dígitos, como número entero o texto numérico.",
+      "oneOf": [
+        {
+          "type": "integer",
+          "minimum": 10000000000,
+          "maximum": 99999999999
+        },
+        {
+          "type": "string",
+          "pattern": "^\\d{11}$",
+          "minLength": 11,
+          "maxLength": 11
+        }
+      ]
+    },
+    "username": {
+      "type": "string",
+      "pattern": "^\\d{11}$",
+      "description": "CUIT de inicio de sesión en ARCA con una credencial guardada en este proyecto. No es el CUIT representado, salvo que también sea el de acceso."
+    },
+    "alias": {
+      "type": "string",
+      "description": "Alias del certificado",
+      "maxLength": 2000
+    },
+    "service": {
+      "type": "string",
+      "description": "ID del web service",
+      "maxLength": 2000
+    },
+    "delegated_from": {
+      "type": "string",
+      "description": "CUIT que lo delegó",
+      "minLength": 11,
+      "maxLength": 11
+    }
+  },
+  "required": [
+    "cuit",
+    "username",
+    "alias",
+    "service"
+  ],
+  "additionalProperties": false
+}

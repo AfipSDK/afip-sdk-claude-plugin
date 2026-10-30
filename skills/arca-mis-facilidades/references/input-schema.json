@@ -1,0 +1,94 @@
+{
+  "type": "object",
+  "properties": {
+    "cuit": {
+      "description": "CUIT de 11 dígitos, como número entero o texto numérico.",
+      "oneOf": [
+        {
+          "type": "integer",
+          "minimum": 10000000000,
+          "maximum": 99999999999
+        },
+        {
+          "type": "string",
+          "pattern": "^\\d{11}$",
+          "minLength": 11,
+          "maxLength": 11
+        }
+      ]
+    },
+    "username": {
+      "type": "string",
+      "pattern": "^\\d{11}$",
+      "description": "CUIT de inicio de sesión en ARCA con una credencial guardada en este proyecto. No es el CUIT representado, salvo que también sea el de acceso."
+    },
+    "filters": {
+      "type": "object",
+      "properties": {
+        "tipo_plan": {
+          "type": "string",
+          "description": "Tipo de plan",
+          "maxLength": 2000
+        },
+        "situacion": {
+          "type": "string",
+          "description": "Situación",
+          "maxLength": 2000
+        },
+        "estado_envio": {
+          "type": "string",
+          "description": "Estado de envío",
+          "maxLength": 2000
+        },
+        "fecha_presentacion_desde": {
+          "type": "string",
+          "description": "Fecha presentación desde",
+          "minLength": 10,
+          "maxLength": 10
+        },
+        "fecha_presentacion_hasta": {
+          "type": "string",
+          "description": "Fecha presentación hasta",
+          "minLength": 10,
+          "maxLength": 10
+        },
+        "order_by": {
+          "type": "string",
+          "description": "Ordenamiento",
+          "enum": [
+            "fecha_presentacion",
+            "numero_presentacion",
+            "cantidad_total_cuotas",
+            "cuotas_pagas",
+            "cuotas_impagas",
+            "presentacion",
+            "tipo_plan",
+            "total_consolidado",
+            "estado_envio",
+            "situacion"
+          ],
+          "maxLength": 2000
+        },
+        "order_direction": {
+          "type": "string",
+          "description": "Dirección de ordenamiento",
+          "enum": [
+            "asc",
+            "desc",
+            "A",
+            "D"
+          ],
+          "maxLength": 2000
+        }
+      },
+      "required": [],
+      "additionalProperties": false,
+      "description": "Filtros"
+    }
+  },
+  "required": [
+    "cuit",
+    "username"
+  ],
+  "additionalProperties": false
+}

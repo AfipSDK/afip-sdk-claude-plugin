@@ -1,0 +1,60 @@
+{
+  "tools": [
+    {
+      "name": "usage_tax_ids",
+      "product": "facturasdk",
+      "scope": "usage:read",
+      "description": "List CUIT usage for production billing only. Not available for dev sandbox connections.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "start": {
+            "type": "string",
+            "description": "Fecha inicial",
+            "maxLength": 2000
+          },
+          "end": {
+            "type": "string",
+            "description": "Fecha final",
+            "maxLength": 2000
+          },
+          "cursor": {
+            "type": "string",
+            "description": "Cursor",
+            "maxLength": 2000
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Límite"
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "project_current",
+      "product": "shared",
+      "scope": "project:read",
+      "description": "Read the authorized project public plan, subscription, period, usage and limits. Factura SDK counters cover production billing, not dev sandbox.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
+    }
+  ]
+}

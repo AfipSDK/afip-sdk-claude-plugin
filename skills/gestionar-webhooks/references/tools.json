@@ -1,0 +1,205 @@
+{
+  "tools": [
+    {
+      "name": "webhooks_list",
+      "product": "facturasdk",
+      "scope": "webhooks:read",
+      "description": "webhooks list. Uses the project and environment of the connection; Factura SDK dev is a sandbox, not ARCA homologation.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Estado",
+            "enum": [
+              "active",
+              "inactive"
+            ],
+            "maxLength": 2000
+          },
+          "cursor": {
+            "type": "string",
+            "description": "Cursor",
+            "maxLength": 2000
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Límite"
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "webhooks_get",
+      "product": "facturasdk",
+      "scope": "webhooks:read",
+      "description": "webhooks get. Uses the project and environment of the connection; Factura SDK dev is a sandbox, not ARCA homologation.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "webhooks_edit",
+      "product": "facturasdk",
+      "scope": "webhooks:write",
+      "description": "webhooks edit. Uses the project and environment of the connection; Factura SDK dev is a sandbox, not ARCA homologation.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "url": {
+            "type": "string",
+            "description": "URL",
+            "maxLength": 500
+          },
+          "status": {
+            "type": "string",
+            "description": "Estado",
+            "enum": [
+              "active",
+              "inactive"
+            ],
+            "maxLength": 2000
+          },
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "webhooks_test",
+      "product": "facturasdk",
+      "scope": "webhooks:write",
+      "description": "Send a real test event to the existing webhook endpoint.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "webhooks_deliveries",
+      "product": "facturasdk",
+      "scope": "webhooks:read",
+      "description": "webhooks deliveries. Uses the project and environment of the connection; Factura SDK dev is a sandbox, not ARCA homologation.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Estado",
+            "enum": [
+              "pending",
+              "delivered",
+              "failed"
+            ],
+            "maxLength": 2000
+          },
+          "invoice_id": {
+            "type": "string",
+            "description": "ID del comprobante",
+            "maxLength": 2000
+          },
+          "cursor": {
+            "type": "string",
+            "description": "Cursor",
+            "maxLength": 2000
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Límite"
+          },
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "project_current",
+      "product": "shared",
+      "scope": "project:read",
+      "description": "Read the authorized project public plan, subscription, period, usage and limits. Factura SDK counters cover production billing, not dev sandbox.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
+    }
+  ]
+}
