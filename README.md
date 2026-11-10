@@ -4,8 +4,9 @@ Facturación electrónica y trámites de ARCA desde Claude mediante una conexió
 
 ## Qué incluye
 
-- 29 workflows en español: emitir, consultar y cancelar comprobantes pendientes; gestionar emisores, certificados y webhooks; consultar consumo; y ejecutar 22 automatizaciones específicas de ARCA.
+- 30 workflows en español: emitir, consultar y cancelar comprobantes pendientes; gestionar emisores, certificados y webhooks; consultar consumo; y ejecutar 23 automatizaciones específicas de ARCA.
 - Esquemas de entrada y referencias de las herramientas reales. Las funciones disponibles dependen del producto, ambiente y permisos del proyecto conectado.
+- Consulta pública de Aportes en Línea por CUIL, sin clave fiscal, además de la variante autenticada por período.
 - Conexión MCP remota por HTTP a `https://app.afipsdk.com/mcp`. No contiene servidores locales, dependencias de instalación, tokens ni secretos.
 
 Factura SDK en desarrollo es simulado; las automatizaciones de ARCA consultan u operan sobre ARCA real. Las skills distinguen ambos productos y no cambian de proyecto ni ambiente por parámetros.
