@@ -17,7 +17,7 @@ Necesitás una cuenta y un proyecto en Afip SDK con los permisos correspondiente
 
 ### Claude Code
 
-Usá una versión actual de Claude Code. El plugin incluye la configuración de conexión; no necesitás agregar tokens ni editar `.mcp.json`.
+Usá una versión actual de Claude Code. El plugin incluye la configuración de conexión; no necesitás agregar tokens, client IDs ni secretos, ni editar `.mcp.json`.
 
 Cloná este repositorio y cargá el plugin localmente:
 
