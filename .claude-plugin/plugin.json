@@ -1,7 +1,7 @@
 {
   "name": "afipsdk",
   "displayName": "Afip SDK",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Facturación electrónica y trámites de ARCA con Afip SDK, mediante 30 workflows en español y una conexión MCP autorizada.",
   "author": {
     "name": "Afip SDK",
