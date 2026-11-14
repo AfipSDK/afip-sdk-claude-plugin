@@ -53,6 +53,7 @@
         "additionalProperties": false
       },
       "annotations": {
+        "title": "Listar comprobantes",
         "readOnlyHint": true,
         "destructiveHint": false,
         "idempotentHint": true,
@@ -80,6 +81,7 @@
         "additionalProperties": false
       },
       "annotations": {
+        "title": "Consultar comprobante",
         "readOnlyHint": true,
         "destructiveHint": false,
         "idempotentHint": true,
@@ -110,6 +112,7 @@
         "additionalProperties": false
       },
       "annotations": {
+        "title": "Obtener enlace al PDF de un comprobante",
         "readOnlyHint": true,
         "destructiveHint": false,
         "idempotentHint": true,
@@ -140,6 +143,7 @@
         "additionalProperties": false
       },
       "annotations": {
+        "title": "Obtener solicitud XML enviada a ARCA",
         "readOnlyHint": true,
         "destructiveHint": false,
         "idempotentHint": true,
@@ -170,6 +174,7 @@
         "additionalProperties": false
       },
       "annotations": {
+        "title": "Obtener respuesta de ARCA",
         "readOnlyHint": true,
         "destructiveHint": false,
         "idempotentHint": true,
@@ -188,6 +193,7 @@
         "additionalProperties": false
       },
       "annotations": {
+        "title": "Consultar proyecto, plan y consumo",
         "readOnlyHint": true,
         "destructiveHint": false,
         "idempotentHint": true,

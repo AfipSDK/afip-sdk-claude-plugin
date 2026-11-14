@@ -31,6 +31,7 @@
         "additionalProperties": false
       },
       "annotations": {
+        "title": "Listar endpoints de webhooks",
         "readOnlyHint": true,
         "destructiveHint": false,
         "idempotentHint": true,
@@ -58,6 +59,7 @@
         "additionalProperties": false
       },
       "annotations": {
+        "title": "Consultar endpoint de webhook",
         "readOnlyHint": true,
         "destructiveHint": false,
         "idempotentHint": true,
@@ -68,7 +70,7 @@
       "name": "webhooks_edit",
       "product": "facturasdk",
       "scope": "webhooks:write",
-      "description": "webhooks edit. Uses the project and environment of the connection; Factura SDK dev is a sandbox, not ARCA homologation.",
+      "description": "Update a webhook endpoint URL or status. Uses the project and environment of the connection; Factura SDK dev is a sandbox, not ARCA homologation. API documentation: https://afipsdk.com/docs/facturasdk/webhooks/",
       "inputSchema": {
         "type": "object",
         "properties": {
@@ -99,6 +101,7 @@
         "additionalProperties": false
       },
       "annotations": {
+        "title": "Editar endpoint de webhook",
         "readOnlyHint": false,
         "destructiveHint": true,
         "idempotentHint": false,
@@ -126,6 +129,7 @@
         "additionalProperties": false
       },
       "annotations": {
+        "title": "Enviar evento de prueba al webhook",
         "readOnlyHint": false,
         "destructiveHint": true,
         "idempotentHint": false,
@@ -177,6 +181,7 @@
         "additionalProperties": false
       },
       "annotations": {
+        "title": "Consultar entregas del webhook",
         "readOnlyHint": true,
         "destructiveHint": false,
         "idempotentHint": true,
@@ -195,6 +200,7 @@
         "additionalProperties": false
       },
       "annotations": {
+        "title": "Consultar proyecto, plan y consumo",
         "readOnlyHint": true,
         "destructiveHint": false,
         "idempotentHint": true,

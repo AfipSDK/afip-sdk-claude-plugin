@@ -90,6 +90,7 @@
         "additionalProperties": false
       },
       "annotations": {
+        "title": "Editar emisor",
         "readOnlyHint": false,
         "destructiveHint": true,
         "idempotentHint": false,
@@ -138,6 +139,7 @@
         "additionalProperties": false
       },
       "annotations": {
+        "title": "Crear y asignar certificado al emisor",
         "readOnlyHint": false,
         "destructiveHint": true,
         "idempotentHint": false,
@@ -179,6 +181,7 @@
         "additionalProperties": false
       },
       "annotations": {
+        "title": "Crear certificado de facturación",
         "readOnlyHint": false,
         "destructiveHint": true,
         "idempotentHint": false,
@@ -228,6 +231,7 @@
         "additionalProperties": false
       },
       "annotations": {
+        "title": "Listar certificados",
         "readOnlyHint": true,
         "destructiveHint": false,
         "idempotentHint": true,
@@ -255,6 +259,7 @@
         "additionalProperties": false
       },
       "annotations": {
+        "title": "Consultar certificado",
         "readOnlyHint": true,
         "destructiveHint": false,
         "idempotentHint": true,
@@ -282,6 +287,7 @@
         "additionalProperties": false
       },
       "annotations": {
+        "title": "Revocar uso local de certificado",
         "readOnlyHint": false,
         "destructiveHint": true,
         "idempotentHint": false,
@@ -320,6 +326,7 @@
         "additionalProperties": false
       },
       "annotations": {
+        "title": "Autorizar certificado para facturación electrónica",
         "readOnlyHint": false,
         "destructiveHint": true,
         "idempotentHint": false,
@@ -347,6 +354,7 @@
         "additionalProperties": false
       },
       "annotations": {
+        "title": "Consultar estado y resultado de una automatización",
         "readOnlyHint": true,
         "destructiveHint": false,
         "idempotentHint": true,
@@ -365,6 +373,7 @@
         "additionalProperties": false
       },
       "annotations": {
+        "title": "Consultar proyecto, plan y consumo",
         "readOnlyHint": true,
         "destructiveHint": false,
         "idempotentHint": true,
@@ -389,6 +398,7 @@
         "additionalProperties": false
       },
       "annotations": {
+        "title": "Listar credenciales guardadas de ARCA",
         "readOnlyHint": true,
         "destructiveHint": false,
         "idempotentHint": true,
