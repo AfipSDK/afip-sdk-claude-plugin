@@ -1,13 +1,14 @@
 {
   "name": "afipsdk",
   "displayName": "Afip SDK",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Facturación electrónica y trámites de ARCA con Afip SDK, mediante 30 workflows en español y una conexión MCP autorizada.",
   "author": {
     "name": "Afip SDK",
     "url": "https://afipsdk.com/"
   },
   "homepage": "https://afipsdk.com/",
+  "repository": "https://github.com/AfipSDK/afip-sdk-claude-plugin",
   "license": "Proprietary",
   "keywords": ["ARCA", "AFIP", "Argentina", "facturación electrónica", "automatizaciones"],
   "icon": "./assets/icon.png",
