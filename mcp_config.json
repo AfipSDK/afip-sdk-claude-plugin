@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "afipsdk": {
+      "serverUrl": "https://app.afipsdk.com/mcp",
+      "headers": {
+        "Authorization": "Bearer ${AFIPSDK_ACCESS_TOKEN}"
+      },
+      "variables": [
+        {
+          "name": "AFIPSDK_ACCESS_TOKEN",
+          "title": "Access token de Afip SDK",
+          "description": "Token del proyecto y ambiente con los que querés operar.",
+          "link": "https://app.afipsdk.com/"
+        }
+      ]
+    }
+  }
+}
