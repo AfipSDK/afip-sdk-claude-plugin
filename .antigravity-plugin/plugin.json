@@ -1,0 +1,20 @@
+{
+  "$schema": "https://antigravity.google/schemas/v1/plugin.json",
+  "name": "afipsdk",
+  "displayName": "Afip SDK",
+  "version": "0.2.0",
+  "description": "Facturación electrónica y trámites de ARCA con Afip SDK.",
+  "logo": "assets/icon.png",
+  "suggestedPrompts": [
+    "Mostrame el proyecto conectado y su plan, sin modificar datos.",
+    "Buscá el último comprobante aprobado y pasame su PDF.",
+    "Consultá los comprobantes que me emitieron este mes."
+  ],
+  "author": {
+    "name": "Afip SDK",
+    "url": "https://afipsdk.com/"
+  },
+  "homepage": "https://afipsdk.com/",
+  "repository": "https://github.com/AfipSDK/skills",
+  "license": "Proprietary"
+}

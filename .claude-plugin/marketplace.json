@@ -1,0 +1,13 @@
+{
+  "name": "afipsdk",
+  "owner": {
+    "name": "Afip SDK"
+  },
+  "plugins": [
+    {
+      "name": "afipsdk",
+      "source": "./",
+      "description": "Facturación electrónica y trámites de ARCA con Afip SDK."
+    }
+  ]
+}
