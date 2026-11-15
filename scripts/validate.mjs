@@ -21,14 +21,14 @@ for (const path of manifests) {
 assert.equal(json('plugin.json').$schema, 'https://agent-plugins.org/schemas/1.0.0/plugin.schema.json');
 assert.deepEqual(json('mcp.json'), {
   $schema: 'https://agent-plugins.org/schemas/1.0.0/mcp.schema.json',
-  mcpServers: {},
+  mcpServers: { afipsdk: { type: 'streamable-http', url: endpoint } },
 });
 assert.deepEqual(json('.mcp.json'), {
   mcpServers: { afipsdk: { type: 'http', url: endpoint } },
 });
 const codex = json('.codex-plugin/plugin.json');
 assert.equal(codex.skills, './skills/');
-assert.equal(codex.mcpServers, undefined, 'Codex must use the skills-only portable MCP config');
+assert.equal(codex.mcpServers, undefined, 'Codex must use the shared portable MCP config');
 assert.deepEqual(codex.interface.capabilities, ['Read', 'Write']);
 for (const path of [json('.claude-plugin/plugin.json').icon, codex.interface.logo, codex.interface.composerIcon, json('.antigravity-plugin/plugin.json').logo]) {
   assert.ok(path && existsSync(resolve(root, path)), `Missing asset: ${path}`);

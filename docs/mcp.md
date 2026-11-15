@@ -6,13 +6,16 @@ Endpoint: `https://app.afipsdk.com/mcp`.
 
 ## Antes de configurar
 
-- Para Claude, conservá el consentimiento OAuth del plugin existente, cuando esté habilitado para tu cuenta.
+- Si instalaste el plugin en Claude Code, Codex, Cursor o VS Code, autorizá su servidor incluido mediante OAuth, cuando esté habilitado para tu cliente y cuenta. Antigravity solicita un token en su configuración. No agregues otra entrada manual al mismo endpoint.
+- Si preferís o necesitás un token, deshabilitá o desinstalá el plugin y usá la instalación de skills por CLI con una de las recetas nativas de abajo. No edites los manifiestos del paquete para guardar credenciales.
 - Para las recetas con token, usá el token del proyecto y ambiente que querés conectar, obtenido desde el [dashboard](https://app.afipsdk.com/). Factura SDK y las automatizaciones de Afip SDK son productos distintos: un token no habilita las funciones del otro.
 - Los ejemplos son **fragmentos para combinar** con tu configuración: conservá otros servidores y ajustes. Si ya existe `afipsdk`, actualizá esa entrada en vez de duplicarla.
 - Definí `AFIPSDK_ACCESS_TOKEN` mediante tu gestor de secretos o el entorno del proceso que ejecuta el cliente. Los ejemplos sólo contienen el nombre de la variable. No pegues tokens en el chat, comandos, archivos versionados o capturas.
 - Reiniciá el cliente si cambiaste su entorno. En un cliente remoto, la variable debe estar en el host que ejecuta la conexión.
 
-Los formatos nativos de abajo tienen sintaxis de variables diferentes. **No los copies al `mcp.json` portable de este repositorio:** ese formato no expande variables de cabeceras. El paquete portable instala las skills sin iniciar un servidor MCP; por eso la configuración nativa no duplica una conexión del plugin.
+El paquete incluye `mcp.json` para clientes Agent Plugins y `.mcp.json` para Claude; ambos apuntan a Afip SDK sin credenciales. Cada cliente carga su formato. Antigravity usa su adaptador nativo con token.
+
+Los formatos de abajo tienen sintaxis de variables diferentes. **No los copies al `mcp.json` portable:** ese formato no expande variables de cabeceras. Las recetas con token son para skills instaladas por CLI, sin el servidor del plugin activo.
 
 ## Claude Code
 
@@ -143,7 +146,7 @@ ChatGPT web y Claude web utilizan su conexión autorizada desde apps/conectores,
 
 Después de instalar y conectar, abrí una sesión nueva y pedí:
 
-> Mostrame el proyecto conectado, su producto y ambiente, sin modificar datos.
+> Llamá a project_current y mostrame el proyecto conectado, su producto y plan, sin modificar datos. No infieras el ambiente de esa respuesta.
 
 El agente debe consultar las herramientas disponibles y la información real de la conexión. Si no tiene herramientas de Afip SDK, la instalación de skills por sí sola no completó la conexión. Si falta una operación, revisá el producto, ambiente y permisos antes de cambiar configuración.
 

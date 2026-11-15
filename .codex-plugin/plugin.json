@@ -13,7 +13,7 @@
   "interface": {
     "displayName": "Afip SDK",
     "shortDescription": "Facturación y trámites de ARCA",
-    "longDescription": "Usá las 30 skills existentes de Afip SDK para facturación y trámites de ARCA. Configurá la conexión MCP por separado para operar con tu proyecto.",
+    "longDescription": "Usá las 30 skills existentes de Afip SDK para facturación y trámites de ARCA. Autorizá el servidor MCP incluido para operar con tu proyecto.",
     "developerName": "Afip SDK",
     "category": "Productivity",
     "capabilities": [

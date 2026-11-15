@@ -6,7 +6,9 @@ Una sola colección en [`skills/`](skills), compartida entre clientes. Los plugi
 
 ## Instalación
 
-Elegí **una** de estas opciones. Instalar skills agrega instrucciones; para operar sobre un proyecto también necesitás [conectar el MCP](docs/mcp.md). No instales las mismas skills por plugin y por CLI al mismo tiempo.
+Elegí **una** de estas opciones. Los plugins incluyen las skills y la conexión MCP; la instalación por CLI agrega sólo las skills. Para operar sobre un proyecto necesitás [autorizar la conexión](docs/mcp.md). No instales las mismas skills por ambas vías.
+
+En Claude Code, Codex, Cursor y VS Code, el plugin requiere OAuth habilitado para tu cliente y cuenta. Si no está disponible, instalá sólo las skills por CLI y usá la configuración nativa con token. Antigravity solicita un token mediante su adaptador. No mantengas dos conexiones al mismo endpoint.
 
 ### Cualquier agente compatible con Agent Skills
 
@@ -54,14 +56,16 @@ codex plugin marketplace add AfipSDK/skills
 codex plugin add afipsdk@afipsdk
 ```
 
-Abrí una sesión nueva. El plugin instala las skills; conectá el MCP con un [token de proyecto mediante la configuración de Codex](docs/mcp.md#codex).
+Abrí una sesión nueva y autorizá el servidor MCP incluido desde Codex. No agregues otra entrada con `codex mcp add`. Si necesitás usar un token, instalá sólo las skills por CLI y seguí la [configuración nativa de Codex](docs/mcp.md#codex).
 
 ### VS Code / GitHub Copilot
 
 1. Activá `chat.plugins.enabled` y usá el agente de Copilot.
 2. Ejecutá **Chat: Install Plugin From Source** desde la paleta de comandos.
 3. Ingresá `https://github.com/AfipSDK/skills` y elegí el alcance de instalación.
-4. Abrí una sesión nueva y agregá la [conexión MCP de VS Code](docs/mcp.md#vs-code--github-copilot).
+4. Abrí una sesión nueva y autorizá el servidor incluido desde **MCP: List Servers**. No agregues otra conexión manual.
+
+Para conectar con token, instalá sólo las skills por CLI y seguí la [configuración nativa de VS Code / Copilot](docs/mcp.md#vs-code--github-copilot).
 
 ### Cursor
 
@@ -71,7 +75,7 @@ La opción recomendada es el CLI de skills de arriba. Para usar el plugin local,
 git clone https://github.com/AfipSDK/skills.git ~/.cursor/plugins/local/afipsdk
 ```
 
-Reiniciá Cursor o ejecutá **Developer: Reload Window**, revisá el plugin en **Customize** y agregá la [conexión MCP de Cursor](docs/mcp.md#cursor).
+Reiniciá Cursor o ejecutá **Developer: Reload Window**, revisá el plugin en **Customize** y autorizá el servidor MCP incluido. Para usar un token, elegí skills por CLI en lugar del plugin y seguí la [configuración nativa de Cursor](docs/mcp.md#cursor).
 
 ### Antigravity
 
