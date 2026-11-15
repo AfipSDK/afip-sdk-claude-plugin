@@ -1,5 +1,7 @@
 # Afip SDK Skills
 
+<img src="./icon.png" alt="Afip SDK" width="80" height="80">
+
 30 skills en español para operar con Factura SDK y las automatizaciones de ARCA desde tu agente.
 
 Una sola colección en [`skills/`](skills), compartida entre clientes. Los plugins agregan el formato de instalación de cada agente; no duplican ni cambian las skills.
@@ -40,14 +42,14 @@ claude plugin install afipsdk@afipsdk --scope user
 
 Abrí una sesión nueva, ejecutá `/mcp`, elegí Afip SDK y completá el consentimiento en el navegador. Necesitás una cuenta y un proyecto con la conexión a Claude habilitada. La conexión queda ligada al proyecto y ambiente autorizados.
 
-Se conserva también la instalación local existente:
+También podés instalar el plugin localmente:
 
 ```sh
 git clone https://github.com/AfipSDK/skills.git
 claude --plugin-dir ./skills
 ```
 
-Claude conserva su MCP incluido. No agregues otro servidor al mismo endpoint si ya cargaste el plugin, ni edites su `.mcp.json` para poner credenciales.
+El plugin de Claude incluye el MCP. No agregues otro servidor al mismo endpoint si ya cargaste el plugin, ni edites su `.mcp.json` para poner credenciales.
 
 ### Codex
 
@@ -99,12 +101,12 @@ Los catálogos incluidos permiten instalar desde GitHub. **No implican publicaci
 
 ## Qué podés hacer
 
-Las skills existentes cubren:
+Las skills cubren:
 
 - **Facturación y gestión:** emitir y consultar comprobantes, cancelar emisiones pendientes, configurar emisores, gestionar certificados y webhooks, consultar consumo.
 - **23 automatizaciones de ARCA:** Mis Comprobantes, Monotributo, Mis Retenciones, Domicilio Fiscal Electrónico, cuentas y aportes, entre otras. Incluyen Aportes en Línea público por CUIL y la variante autenticada por período.
 
-Cada skill conserva sus esquemas y referencias de herramientas. La ejecución de las operaciones depende del producto, ambiente y permisos del proyecto conectado. Factura SDK en desarrollo es simulado; las automatizaciones consultan u operan sobre ARCA real. Las skills no cambian de proyecto o ambiente mediante parámetros.
+Cada skill incluye sus esquemas y referencias de herramientas. La ejecución de las operaciones depende del producto, ambiente y permisos del proyecto conectado. Factura SDK en desarrollo es simulado; las automatizaciones consultan u operan sobre ARCA real. Las skills no cambian de proyecto o ambiente mediante parámetros.
 
 Pedí el flujo en lenguaje natural:
 

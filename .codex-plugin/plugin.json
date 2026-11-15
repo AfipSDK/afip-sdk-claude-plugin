@@ -13,7 +13,7 @@
   "interface": {
     "displayName": "Afip SDK",
     "shortDescription": "Facturación y trámites de ARCA",
-    "longDescription": "Usá las 30 skills existentes de Afip SDK para facturación y trámites de ARCA. Autorizá el servidor MCP incluido para operar con tu proyecto.",
+    "longDescription": "Usá las 30 skills de Afip SDK para facturación y trámites de ARCA. Autorizá el servidor MCP incluido para operar con tu proyecto.",
     "developerName": "Afip SDK",
     "category": "Productivity",
     "capabilities": [
@@ -28,7 +28,8 @@
       "Buscá el último comprobante aprobado y pasame su PDF.",
       "Consultá los comprobantes que me emitieron este mes."
     ],
-    "composerIcon": "./assets/icon.png",
-    "logo": "./assets/icon.png"
+    "composerIcon": "./logo.svg",
+    "logo": "./logo.svg",
+    "brandColor": "#6366F1"
   }
 }

@@ -11,7 +11,7 @@
   "repository": "https://github.com/AfipSDK/skills",
   "license": "Proprietary",
   "keywords": ["ARCA", "AFIP", "Argentina", "facturación electrónica", "automatizaciones"],
-  "icon": "./assets/icon.png",
+  "icon": "./icon.png",
   "documentationUrl": "https://docs.afipsdk.com/",
   "supportUrl": "https://afipsdk.com/contact/",
   "privacyPolicyUrl": "https://afipsdk.com/privacy-policy/",

@@ -19,7 +19,7 @@ Los formatos de abajo tienen sintaxis de variables diferentes. **No los copies a
 
 ## Claude Code
 
-El plugin conserva su `.mcp.json` y no necesita un token manual. Abrí `/mcp`, seleccioná el servidor del plugin y completá el inicio de sesión y el consentimiento. Si no podés autorizarlo, revisá la disponibilidad de la conexión para tu cuenta con [soporte](https://afipsdk.com/contact/).
+El plugin incluye `.mcp.json` y no necesita un token manual. Abrí `/mcp`, seleccioná el servidor del plugin y completá el inicio de sesión y el consentimiento. Si no podés autorizarlo, revisá la disponibilidad de la conexión para tu cuenta con [soporte](https://afipsdk.com/contact/).
 
 No agregues una segunda entrada MCP para el mismo endpoint.
 
