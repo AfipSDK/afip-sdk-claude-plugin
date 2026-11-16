@@ -1,0 +1,118 @@
+{
+  "type": "object",
+  "properties": {
+    "cuit": {
+      "description": "CUIT de 11 dígitos, como número entero o texto numérico.",
+      "oneOf": [
+        {
+          "type": "integer",
+          "minimum": 10000000000,
+          "maximum": 99999999999
+        },
+        {
+          "type": "string",
+          "pattern": "^\\d{11}$",
+          "minLength": 11,
+          "maxLength": 11
+        }
+      ]
+    },
+    "username": {
+      "type": "string",
+      "pattern": "^\\d{11}$",
+      "description": "CUIT de inicio de sesión en ARCA con una credencial guardada en este proyecto. No es el CUIT representado, salvo que también sea el de acceso."
+    },
+    "mode": {
+      "type": "string",
+      "description": "Modo",
+      "enum": [
+        "filter",
+        "preset"
+      ],
+      "maxLength": 2000
+    },
+    "page": {
+      "type": "integer",
+      "description": "Página",
+      "minimum": 0
+    },
+    "size": {
+      "type": "integer",
+      "description": "Tamaño de página",
+      "minimum": 1
+    },
+    "preset": {
+      "type": "string",
+      "description": "Preset",
+      "enum": [
+        "percepcion-ganancias",
+        "percepcion-bienes-personales",
+        "retencion-ganancias"
+      ],
+      "maxLength": 2000
+    },
+    "filters": {
+      "type": "object",
+      "properties": {
+        "descripcionImpuesto": {
+          "type": "string",
+          "description": "Descripción de Impuesto",
+          "maxLength": 2000
+        },
+        "nombreAgente": {
+          "type": "string",
+          "description": "Nombre del agente",
+          "maxLength": 2000
+        },
+        "fechaRetencionDesde": {
+          "type": "string",
+          "description": "Fecha retención desde",
+          "maxLength": 2000,
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "fechaRetencionHasta": {
+          "type": "string",
+          "description": "Fecha retención hasta",
+          "maxLength": 2000,
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "impuestoRetenido": {
+          "type": "integer",
+          "description": "Impuesto retenido"
+        },
+        "tipoImpuesto": {
+          "type": "string",
+          "description": "Tipo de impuesto",
+          "maxLength": 2000
+        },
+        "percepciones": {
+          "type": "boolean",
+          "description": "Percepciones",
+          "enum": [
+            true,
+            false
+          ]
+        },
+        "retenciones": {
+          "type": "boolean",
+          "description": "Retenciones",
+          "enum": [
+            true,
+            false
+          ]
+        }
+      },
+      "required": [],
+      "additionalProperties": false,
+      "description": "Filtros"
+    }
+  },
+  "required": [
+    "cuit",
+    "username",
+    "mode",
+    "page",
+    "size"
+  ],
+  "additionalProperties": false
+}

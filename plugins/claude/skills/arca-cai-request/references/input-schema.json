@@ -1,0 +1,121 @@
+{
+  "type": "object",
+  "properties": {
+    "cuit": {
+      "description": "CUIT de 11 dígitos, como número entero o texto numérico.",
+      "oneOf": [
+        {
+          "type": "integer",
+          "minimum": 10000000000,
+          "maximum": 99999999999
+        },
+        {
+          "type": "string",
+          "pattern": "^\\d{11}$",
+          "minLength": 11,
+          "maxLength": 11
+        }
+      ]
+    },
+    "username": {
+      "type": "string",
+      "pattern": "^\\d{11}$",
+      "description": "CUIT de inicio de sesión en ARCA con una credencial guardada en este proyecto. No es el CUIT representado, salvo que también sea el de acceso."
+    },
+    "comprobantes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "puntoVenta": {
+            "type": "integer",
+            "description": "Punto de venta",
+            "minimum": 1
+          },
+          "tipoComprobante": {
+            "type": "integer",
+            "description": "Tipo de comprobante",
+            "minimum": 1
+          },
+          "cantidad": {
+            "type": "integer",
+            "description": "Cantidad",
+            "minimum": 1
+          },
+          "puntosVentaResguardo": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 200
+          }
+        },
+        "required": [
+          "puntoVenta",
+          "tipoComprobante",
+          "cantidad"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 200
+    },
+    "resguardo": {
+      "type": "boolean",
+      "description": "Resguardo",
+      "enum": [
+        true,
+        false
+      ]
+    },
+    "autorizados": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "tipoDocumento": {
+            "type": "integer",
+            "description": "Tipo de documento",
+            "enum": [
+              80,
+              86,
+              87,
+              89,
+              90,
+              96
+            ]
+          },
+          "documento": {
+            "type": "string",
+            "description": "Documento",
+            "maxLength": 11
+          },
+          "denominacion": {
+            "type": "string",
+            "description": "Denominación",
+            "maxLength": 2000
+          }
+        },
+        "required": [
+          "documento",
+          "denominacion"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 200
+    },
+    "validateOnly": {
+      "type": "boolean",
+      "description": "Sólo validar",
+      "enum": [
+        true,
+        false
+      ]
+    }
+  },
+  "required": [
+    "cuit",
+    "username",
+    "comprobantes"
+  ],
+  "additionalProperties": false
+}

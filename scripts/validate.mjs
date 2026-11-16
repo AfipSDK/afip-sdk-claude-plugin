@@ -3,6 +3,8 @@ import { existsSync, readFileSync, readdirSync, realpathSync, statSync } from 'n
 import { dirname, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
+import { validateClaudePackage } from './claude-package.mjs';
+
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const read = (path) => readFileSync(resolve(root, path), 'utf8');
 const json = (path) => JSON.parse(read(path));
@@ -37,7 +39,7 @@ const claudeMarket = json('.claude-plugin/marketplace.json');
 assert.equal(claudeMarket.name, 'afipsdk');
 assert.equal(claudeMarket.plugins.length, 1);
 assert.equal(claudeMarket.plugins[0].name, 'afipsdk');
-assert.equal(claudeMarket.plugins[0].source, './');
+assert.equal(claudeMarket.plugins[0].source, './plugins/claude');
 const codexMarket = json('.agents/plugins/marketplace.json');
 assert.equal(codexMarket.name, 'afipsdk');
 assert.equal(codexMarket.plugins.length, 1);
@@ -79,4 +81,5 @@ for (const path of ['README.md', 'docs/mcp.md']) {
     assert.ok(existsSync(target), `Broken local link in ${path}: ${href}`);
   }
 }
+validateClaudePackage(root);
 console.log(`PASS: ${manifests.length} manifests, 30 skills, ${referenceCount} references, MCP contracts and documentation.`);

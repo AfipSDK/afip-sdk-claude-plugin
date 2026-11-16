@@ -1,0 +1,204 @@
+{
+  "tools": [
+    {
+      "name": "invoices_list",
+      "product": "facturasdk",
+      "scope": "invoices:read",
+      "description": "invoices list. Uses the project and environment of the connection; Factura SDK dev is a sandbox, not ARCA homologation.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "issuer_cuit": {
+            "type": "integer",
+            "description": "CUIT del emisor"
+          },
+          "status": {
+            "type": "string",
+            "description": "Estado",
+            "enum": [
+              "queued",
+              "processing",
+              "approved",
+              "rejected",
+              "failed",
+              "cancelled"
+            ],
+            "maxLength": 2000
+          },
+          "invoice_type": {
+            "type": "integer",
+            "description": "Tipo de comprobante"
+          },
+          "start": {
+            "type": "string",
+            "description": "Fecha inicial",
+            "maxLength": 2000
+          },
+          "end": {
+            "type": "string",
+            "description": "Fecha final",
+            "maxLength": 2000
+          },
+          "cursor": {
+            "type": "string",
+            "description": "Cursor",
+            "maxLength": 2000
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Límite"
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Listar comprobantes",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "invoices_get",
+      "product": "facturasdk",
+      "scope": "invoices:read",
+      "description": "invoices get. Uses the project and environment of the connection; Factura SDK dev is a sandbox, not ARCA homologation.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Consultar comprobante",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "invoices_pdf",
+      "product": "facturasdk",
+      "scope": "invoices:read",
+      "description": "Read the stable public PDF URL of an approved invoice owned by the connected project and environment. Does not generate a PDF; opening the URL serves or generates the cached file.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "download": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Obtener enlace al PDF de un comprobante",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "invoices_arca_request",
+      "product": "facturasdk",
+      "scope": "invoices:read",
+      "description": "Get the stored ARCA request XML download URL; WSAA authentication is already redacted in storage.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "download": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Obtener solicitud XML enviada a ARCA",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "invoices_arca_response",
+      "product": "facturasdk",
+      "scope": "invoices:read",
+      "description": "Get the stored ARCA response download URL.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          },
+          "download": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Obtener respuesta de ARCA",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "project_current",
+      "product": "shared",
+      "scope": "project:read",
+      "description": "Read the authorized project public plan, subscription, period, usage and limits. Factura SDK counters cover production billing, not dev sandbox.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Consultar proyecto, plan y consumo",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
+    }
+  ]
+}

@@ -4,7 +4,7 @@
 
 30 skills en español para operar con Factura SDK y las automatizaciones de ARCA desde tu agente.
 
-Una sola colección en [`skills/`](skills), compartida entre clientes. Los plugins agregan el formato de instalación de cada agente; no duplican ni cambian las skills.
+Una sola colección mantenida en [`skills/`](skills), compartida entre clientes. Los plugins agregan el formato de instalación de cada agente. El paquete de Claude en [`plugins/claude/`](plugins/claude) incluye una copia generada e idéntica de esas skills y sus referencias.
 
 ## Instalación
 
@@ -46,7 +46,7 @@ También podés instalar el plugin localmente:
 
 ```sh
 git clone https://github.com/AfipSDK/skills.git
-claude --plugin-dir ./skills
+claude --plugin-dir ./skills/plugins/claude
 ```
 
 El plugin de Claude incluye el MCP. No agregues otro servidor al mismo endpoint si ya cargaste el plugin, ni edites su `.mcp.json` para poner credenciales.
@@ -124,7 +124,20 @@ Para comprobar archivos, manifiestos y referencias, sin conectar cuentas:
 
 ```sh
 node scripts/validate.mjs
+node --test scripts/claude-package.test.mjs
 ```
+
+El paquete de Claude es autocontenido: incluye el manifiesto, la conexión MCP, el icono PNG, README, licencia y las 30 skills con sus referencias. Los scripts de mantenimiento, el SVG y los adaptadores de otros clientes quedan fuera de `plugins/claude/`.
+
+Después de editar las skills compartidas, el manifiesto de Claude, `.mcp.json`, `icon.png`, `LICENSE` o el README fuente en `docs/claude-plugin.md`, regenerá y validá la copia distribuible:
+
+```sh
+node scripts/claude-package.mjs --write
+node scripts/validate.mjs
+claude plugin validate ./plugins/claude
+```
+
+La validación local no reemplaza la validación del directorio de Anthropic. La raíz del repositorio conserva los formatos de otros clientes; no es el paquete aislado de Claude.
 
 ## Documentación y condiciones
 

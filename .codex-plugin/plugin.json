@@ -1,6 +1,6 @@
 {
   "name": "afipsdk",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "30 skills en español para facturación electrónica y trámites de ARCA con Afip SDK. La conexión MCP se configura según el agente.",
   "author": {
     "name": "Afip SDK",

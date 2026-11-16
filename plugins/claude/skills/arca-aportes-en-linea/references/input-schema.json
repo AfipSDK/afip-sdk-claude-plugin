@@ -1,0 +1,43 @@
+{
+  "type": "object",
+  "properties": {
+    "cuit": {
+      "description": "CUIT de 11 dígitos, como número entero o texto numérico.",
+      "oneOf": [
+        {
+          "type": "integer",
+          "minimum": 10000000000,
+          "maximum": 99999999999
+        },
+        {
+          "type": "string",
+          "pattern": "^\\d{11}$",
+          "minLength": 11,
+          "maxLength": 11
+        }
+      ]
+    },
+    "username": {
+      "type": "string",
+      "pattern": "^\\d{11}$",
+      "description": "CUIT de inicio de sesión en ARCA con una credencial guardada en este proyecto. No es el CUIT representado, salvo que también sea el de acceso."
+    },
+    "periodo_desde": {
+      "type": "string",
+      "description": "Período desde (AAAA-MM)",
+      "maxLength": 2000
+    },
+    "periodo_hasta": {
+      "type": "string",
+      "description": "Período hasta (AAAA-MM)",
+      "maxLength": 2000
+    }
+  },
+  "required": [
+    "cuit",
+    "username",
+    "periodo_desde",
+    "periodo_hasta"
+  ],
+  "additionalProperties": false
+}

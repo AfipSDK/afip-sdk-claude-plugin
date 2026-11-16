@@ -1,0 +1,55 @@
+{
+  "type": "object",
+  "properties": {
+    "cuit": {
+      "description": "CUIT de 11 dígitos, como número entero o texto numérico.",
+      "oneOf": [
+        {
+          "type": "integer",
+          "minimum": 10000000000,
+          "maximum": 99999999999
+        },
+        {
+          "type": "string",
+          "pattern": "^\\d{11}$",
+          "minLength": 11,
+          "maxLength": 11
+        }
+      ]
+    },
+    "username": {
+      "type": "string",
+      "pattern": "^\\d{11}$",
+      "description": "CUIT de inicio de sesión en ARCA con una credencial guardada en este proyecto. No es el CUIT representado, salvo que también sea el de acceso."
+    },
+    "service": {
+      "type": "string",
+      "description": "ID completo del servicio delegado, incluido su esquema",
+      "maxLength": 2000,
+      "pattern": "^[a-zA-Z][a-zA-Z0-9+.-]*://[^\\s|]+$"
+    },
+    "delegated_cuit": {
+      "description": "CUIT que te delegó el servicio",
+      "oneOf": [
+        {
+          "type": "integer",
+          "minimum": 10000000000,
+          "maximum": 99999999999
+        },
+        {
+          "type": "string",
+          "pattern": "^\\d{11}$",
+          "minLength": 11,
+          "maxLength": 11
+        }
+      ]
+    }
+  },
+  "required": [
+    "cuit",
+    "username",
+    "service",
+    "delegated_cuit"
+  ],
+  "additionalProperties": false
+}
