@@ -6,7 +6,7 @@
   "plugins": [
     {
       "name": "afipsdk",
-      "source": "./",
+      "source": "./plugins/claude",
       "description": "Facturación electrónica y trámites de ARCA con Afip SDK."
     }
   ]

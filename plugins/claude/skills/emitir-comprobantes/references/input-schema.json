@@ -1,0 +1,438 @@
+{
+  "type": "object",
+  "properties": {
+    "issuer_cuit": {
+      "type": "integer",
+      "description": "CUIT del emisor"
+    },
+    "invoice_type": {
+      "type": "integer",
+      "description": "Tipo de comprobante",
+      "enum": [
+        1,
+        2,
+        3,
+        6,
+        7,
+        8,
+        11,
+        12,
+        13
+      ]
+    },
+    "concept": {
+      "type": "integer",
+      "description": "Concepto",
+      "enum": [
+        1,
+        2,
+        3
+      ]
+    },
+    "invoice_date": {
+      "type": "string",
+      "description": "Fecha del comprobante",
+      "maxLength": 2000,
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+    },
+    "receiver": {
+      "type": "object",
+      "properties": {
+        "doc_type": {
+          "type": "integer",
+          "description": "Tipo de documento del receptor",
+          "enum": [
+            80,
+            86,
+            87,
+            89,
+            90,
+            91,
+            92,
+            93,
+            94,
+            95,
+            96,
+            99
+          ]
+        },
+        "doc_number": {
+          "type": "string",
+          "description": "Número de documento del receptor",
+          "maxLength": 20
+        },
+        "vat_condition": {
+          "type": "integer",
+          "description": "Condición frente al IVA del receptor",
+          "enum": [
+            1,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            13,
+            15,
+            16
+          ]
+        },
+        "name": {
+          "type": "string",
+          "description": "Nombre del receptor",
+          "maxLength": 200
+        },
+        "address": {
+          "type": "string",
+          "description": "Domicilio del receptor",
+          "maxLength": 300
+        },
+        "email": {
+          "type": "string",
+          "description": "Email del receptor",
+          "maxLength": 200
+        }
+      },
+      "required": [
+        "doc_type",
+        "doc_number",
+        "vat_condition",
+        "name",
+        "address"
+      ],
+      "additionalProperties": false,
+      "description": "Receptor"
+    },
+    "amounts": {
+      "type": "object",
+      "properties": {
+        "net": {
+          "type": "number",
+          "description": "Importe neto",
+          "minimum": 0
+        },
+        "vat": {
+          "type": "number",
+          "description": "Importe de IVA",
+          "minimum": 0
+        },
+        "exempt": {
+          "type": "number",
+          "description": "Importe exento",
+          "minimum": 0
+        },
+        "untaxed": {
+          "type": "number",
+          "description": "Importe no gravado",
+          "minimum": 0
+        },
+        "tributes": {
+          "type": "number",
+          "description": "Importe de tributos",
+          "minimum": 0
+        },
+        "total": {
+          "type": "number",
+          "description": "Importe total",
+          "exclusiveMinimum": 0
+        }
+      },
+      "required": [
+        "net",
+        "vat",
+        "exempt",
+        "untaxed",
+        "tributes",
+        "total"
+      ],
+      "additionalProperties": false,
+      "description": "Importes"
+    },
+    "currency": {
+      "type": "string",
+      "description": "Moneda",
+      "enum": [
+        "PES",
+        "DOL"
+      ],
+      "maxLength": 2000
+    },
+    "exchange_rate": {
+      "type": "number",
+      "description": "Cotización",
+      "exclusiveMinimum": 0
+    },
+    "vat_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "ID de alícuota de IVA",
+            "enum": [
+              3,
+              4,
+              5,
+              6,
+              8,
+              9
+            ]
+          },
+          "base": {
+            "type": "number",
+            "description": "Base imponible de la alícuota",
+            "minimum": 0
+          },
+          "amount": {
+            "type": "number",
+            "description": "Importe de IVA de la alícuota",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "id",
+          "base",
+          "amount"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 200
+    },
+    "tribute_items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "ID de tributo",
+            "minimum": 1,
+            "maximum": 99
+          },
+          "description": {
+            "type": "string",
+            "description": "Descripción del tributo",
+            "maxLength": 80
+          },
+          "base": {
+            "type": "number",
+            "description": "Base imponible del tributo",
+            "minimum": 0
+          },
+          "rate": {
+            "type": "number",
+            "description": "Alícuota del tributo",
+            "minimum": 0
+          },
+          "amount": {
+            "type": "number",
+            "description": "Importe del tributo",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "id",
+          "description",
+          "base",
+          "rate",
+          "amount"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 200
+    },
+    "associated_invoices": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "invoice_type": {
+            "type": "integer",
+            "description": "Tipo del comprobante asociado",
+            "minimum": 1
+          },
+          "sales_point": {
+            "type": "integer",
+            "description": "Punto de venta del comprobante asociado",
+            "minimum": 1,
+            "maximum": 99999
+          },
+          "number": {
+            "type": "integer",
+            "description": "Número del comprobante asociado",
+            "minimum": 1
+          },
+          "date": {
+            "type": "string",
+            "description": "Fecha del comprobante asociado",
+            "maxLength": 2000,
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          }
+        },
+        "required": [
+          "invoice_type",
+          "sales_point",
+          "number"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 200
+    },
+    "associated_period": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "type": "string",
+          "description": "Inicio del período asociado",
+          "maxLength": 2000,
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "to": {
+          "type": "string",
+          "description": "Fin del período asociado",
+          "maxLength": 2000,
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        }
+      },
+      "required": [
+        "from",
+        "to"
+      ],
+      "additionalProperties": false,
+      "description": "Período asociado"
+    },
+    "service_dates": {
+      "type": "object",
+      "properties": {
+        "from": {
+          "type": "string",
+          "description": "Inicio del servicio",
+          "maxLength": 2000,
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "to": {
+          "type": "string",
+          "description": "Fin del servicio",
+          "maxLength": 2000,
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        },
+        "due": {
+          "type": "string",
+          "description": "Vencimiento del pago",
+          "maxLength": 2000,
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+        }
+      },
+      "required": [],
+      "additionalProperties": false,
+      "description": "Fechas del servicio"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Código del ítem",
+            "maxLength": 50
+          },
+          "description": {
+            "type": "string",
+            "description": "Descripción del ítem",
+            "maxLength": 300
+          },
+          "quantity": {
+            "type": "integer",
+            "description": "Cantidad del ítem",
+            "minimum": 1
+          },
+          "unit_price": {
+            "type": "number",
+            "description": "Precio unitario del ítem",
+            "minimum": 0
+          },
+          "subtotal": {
+            "type": "number",
+            "description": "Subtotal del ítem",
+            "minimum": 0
+          },
+          "vat_rate": {
+            "type": "number",
+            "description": "Alícuota de IVA del ítem",
+            "minimum": 0
+          }
+        },
+        "required": [
+          "description",
+          "quantity",
+          "unit_price",
+          "subtotal"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 200
+    },
+    "sale_condition": {
+      "type": "string",
+      "description": "Condición de venta",
+      "maxLength": 50
+    },
+    "reason": {
+      "type": "string",
+      "description": "Motivo de la nota",
+      "maxLength": 200
+    },
+    "note": {
+      "type": "string",
+      "description": "Nota al pie del comprobante",
+      "maxLength": 500
+    },
+    "sandbox": {
+      "type": "object",
+      "properties": {
+        "result": {
+          "type": "string",
+          "description": "Resultado del sandbox",
+          "enum": [
+            "approved",
+            "approved_with_observations",
+            "rejected",
+            "error"
+          ],
+          "maxLength": 2000
+        }
+      },
+      "required": [],
+      "additionalProperties": false,
+      "description": "Sandbox"
+    },
+    "sync": {
+      "type": "boolean",
+      "description": "Sincrónico",
+      "enum": [
+        true,
+        false
+      ]
+    },
+    "idempotency_key": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "pattern": "\\S"
+    }
+  },
+  "required": [
+    "issuer_cuit",
+    "invoice_type",
+    "concept",
+    "receiver",
+    "amounts",
+    "items",
+    "sale_condition",
+    "idempotency_key"
+  ],
+  "additionalProperties": false
+}

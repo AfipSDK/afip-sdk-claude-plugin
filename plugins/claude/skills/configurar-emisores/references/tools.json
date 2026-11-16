@@ -1,0 +1,602 @@
+{
+  "tools": [
+    {
+      "name": "issuers_create",
+      "product": "facturasdk",
+      "scope": "issuers:write",
+      "description": "issuers create. Uses the project and environment of the connection; Factura SDK dev is a sandbox, not ARCA homologation.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "tax_id": {
+            "type": "integer",
+            "description": "CUIT"
+          },
+          "business_name": {
+            "type": "string",
+            "description": "Razón social",
+            "maxLength": 200
+          },
+          "address": {
+            "type": "string",
+            "description": "Domicilio",
+            "maxLength": 300
+          },
+          "vat_condition": {
+            "type": "integer",
+            "description": "Condición frente al IVA",
+            "enum": [
+              1,
+              4,
+              6,
+              7,
+              10,
+              13,
+              15,
+              16
+            ]
+          },
+          "gross_income": {
+            "type": "string",
+            "description": "Ingresos brutos",
+            "maxLength": 50
+          },
+          "activity_start_date": {
+            "type": "string",
+            "description": "Inicio de actividades",
+            "maxLength": 2000,
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "sales_point": {
+            "type": "integer",
+            "description": "Punto de venta",
+            "minimum": 1,
+            "maximum": 99999
+          },
+          "certificate_id": {
+            "type": "string",
+            "description": "Certificado",
+            "maxLength": 100
+          }
+        },
+        "required": [
+          "tax_id",
+          "business_name",
+          "address",
+          "vat_condition",
+          "gross_income",
+          "activity_start_date"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Crear emisor",
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "issuers_list",
+      "product": "facturasdk",
+      "scope": "issuers:read",
+      "description": "issuers list. Uses the project and environment of the connection; Factura SDK dev is a sandbox, not ARCA homologation.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "tax_id": {
+            "type": "integer",
+            "description": "CUIT"
+          },
+          "certificate_id": {
+            "type": "string",
+            "description": "Certificado",
+            "maxLength": 100
+          },
+          "status": {
+            "type": "string",
+            "description": "Estado",
+            "enum": [
+              "pending",
+              "active",
+              "inactive"
+            ],
+            "maxLength": 2000
+          },
+          "cursor": {
+            "type": "string",
+            "description": "Cursor",
+            "maxLength": 2000
+          },
+          "limit": {
+            "type": "integer",
+            "description": "Límite"
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Listar emisores",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "issuers_lookup",
+      "product": "facturasdk",
+      "scope": "issuers:read",
+      "description": "issuers lookup. Uses the project and environment of the connection; Factura SDK dev is a sandbox, not ARCA homologation.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "tax_id": {
+            "type": "integer",
+            "description": "CUIT"
+          }
+        },
+        "required": [
+          "tax_id"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Consultar datos fiscales de un CUIT",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "issuers_sales_points",
+      "product": "facturasdk",
+      "scope": "issuers:write",
+      "description": "Start a persisted sales-point lookup job using a stored ARCA credential. Returns an automation ID to poll; Factura SDK dev uses its existing sandbox.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "tax_id": {
+            "type": "integer",
+            "description": "CUIT"
+          },
+          "username": {
+            "type": "string",
+            "pattern": "^\\d{11}$",
+            "description": "CUIT de inicio de sesión en ARCA con una credencial guardada en este proyecto. No es el CUIT representado, salvo que también sea el de acceso."
+          }
+        },
+        "required": [
+          "tax_id",
+          "username"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Consultar puntos de venta del emisor",
+        "readOnlyHint": false,
+        "destructiveHint": false,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "issuers_sales_points_create",
+      "product": "facturasdk",
+      "scope": "issuers:write",
+      "description": "issuers sales points create. Uses the project and environment of the connection; Factura SDK dev is a sandbox, not ARCA homologation.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "tax_id": {
+            "type": "integer",
+            "description": "CUIT"
+          },
+          "username": {
+            "type": "string",
+            "pattern": "^\\d{11}$",
+            "description": "CUIT de inicio de sesión en ARCA con una credencial guardada en este proyecto. No es el CUIT representado, salvo que también sea el de acceso."
+          },
+          "number": {
+            "type": "integer",
+            "description": "Número de punto de venta",
+            "minimum": 1,
+            "maximum": 99999
+          },
+          "name": {
+            "type": "string",
+            "description": "Nombre del punto de venta",
+            "minLength": 1,
+            "maxLength": 50
+          },
+          "vat_condition": {
+            "type": "integer",
+            "description": "Condición frente al IVA",
+            "enum": [
+              1,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              10,
+              13,
+              15,
+              16
+            ]
+          },
+          "system": {
+            "type": "string",
+            "description": "Sistema de ARCA",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "previous_automation_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "description": "Only for an intentional new operation after consuming a completed result: the previous completed automation ID. Omit when retrying or resuming; never bypasses an operation still running or with an uncertain outcome."
+          }
+        },
+        "required": [
+          "tax_id",
+          "username"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Crear punto de venta del emisor",
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "issuers_get",
+      "product": "facturasdk",
+      "scope": "issuers:read",
+      "description": "issuers get. Uses the project and environment of the connection; Factura SDK dev is a sandbox, not ARCA homologation.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Consultar emisor",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "issuers_edit",
+      "product": "facturasdk",
+      "scope": "issuers:write",
+      "description": "issuers edit. Uses the project and environment of the connection; Factura SDK dev is a sandbox, not ARCA homologation.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "business_name": {
+            "type": "string",
+            "description": "Razón social",
+            "maxLength": 200
+          },
+          "address": {
+            "type": "string",
+            "description": "Domicilio",
+            "maxLength": 300
+          },
+          "vat_condition": {
+            "type": "integer",
+            "description": "Condición frente al IVA",
+            "enum": [
+              1,
+              4,
+              6,
+              7,
+              10,
+              13,
+              15,
+              16
+            ]
+          },
+          "gross_income": {
+            "type": "string",
+            "description": "Ingresos brutos",
+            "maxLength": 50
+          },
+          "activity_start_date": {
+            "type": "string",
+            "description": "Inicio de actividades",
+            "maxLength": 2000,
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}$"
+          },
+          "sales_point": {
+            "oneOf": [
+              {
+                "type": "integer",
+                "description": "Punto de venta",
+                "minimum": 1,
+                "maximum": 99999
+              },
+              {
+                "const": null
+              }
+            ]
+          },
+          "certificate_id": {
+            "oneOf": [
+              {
+                "type": "string",
+                "description": "Certificado",
+                "maxLength": 100
+              },
+              {
+                "const": null
+              }
+            ]
+          },
+          "status": {
+            "type": "string",
+            "description": "Estado",
+            "enum": [
+              "active",
+              "inactive"
+            ],
+            "maxLength": 2000
+          },
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Editar emisor",
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "issuers_delete",
+      "product": "facturasdk",
+      "scope": "issuers:write",
+      "description": "Soft-delete issuer; existing invoices remain.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Eliminar emisor",
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "issuers_verify",
+      "product": "facturasdk",
+      "scope": "issuers:write",
+      "description": "Verify issuer. In production this issues a REAL $1 invoice and a credit note. Not a read-only check.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Verificar emisor mediante emisión fiscal",
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "issuers_certificate",
+      "product": "facturasdk",
+      "scope": "issuers:write",
+      "description": "Create and assign a certificate by ARCA automation using a stored credential. Manual PEM/private key uploads are dashboard-only.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "tax_id": {
+            "type": "integer",
+            "description": "CUIT"
+          },
+          "username": {
+            "type": "string",
+            "pattern": "^\\d{11}$",
+            "description": "CUIT de inicio de sesión en ARCA con una credencial guardada en este proyecto. No es el CUIT representado, salvo que también sea el de acceso."
+          },
+          "alias": {
+            "type": "string",
+            "description": "Alias del certificado",
+            "maxLength": 100
+          },
+          "previous_automation_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "description": "Only for an intentional new operation after consuming a completed result: the previous completed automation ID. Omit when retrying or resuming; never bypasses an operation still running or with an uncertain outcome."
+          },
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          }
+        },
+        "required": [
+          "username",
+          "id"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Crear y asignar certificado al emisor",
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "issuers_delegation",
+      "product": "facturasdk",
+      "scope": "issuers:write",
+      "description": "Acepta en ARCA una delegación de facturación electrónica (WSFE) previamente otorgada por el emisor al titular del certificado activo asignado, de otro CUIT, y autoriza ese certificado para emitir por el emisor; no crea la delegación inicial. Usa una credencial de ARCA guardada en el proyecto y entorno de la conexión, con acceso al CUIT titular del certificado. Devuelve automation_id para consultar estado y resultado con automations_get. En producción realiza cambios reales en ARCA; en desarrollo se simula, sin usar homologación de ARCA.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string",
+            "pattern": "^\\d{11}$",
+            "description": "CUIT de inicio de sesión en ARCA con una credencial guardada en este proyecto. No es el CUIT representado, salvo que también sea el de acceso."
+          },
+          "previous_automation_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "description": "Only for an intentional new operation after consuming a completed result: the previous completed automation ID. Omit when retrying or resuming; never bypasses an operation still running or with an uncertain outcome."
+          },
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          }
+        },
+        "required": [
+          "username",
+          "id"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Aceptar delegación de facturación electrónica",
+        "readOnlyHint": false,
+        "destructiveHint": true,
+        "idempotentHint": false,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "automations_get",
+      "product": "shared",
+      "scope": "automations:read",
+      "description": "Get owned automation status/result, including Factura SDK jobs in the connected environment. Secrets are redacted.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100,
+            "pattern": "^[A-Za-z0-9_-]+$"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Consultar estado y resultado de una automatización",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "project_current",
+      "product": "shared",
+      "scope": "project:read",
+      "description": "Read the authorized project public plan, subscription, period, usage and limits. Factura SDK counters cover production billing, not dev sandbox.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {},
+        "required": [],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Consultar proyecto, plan y consumo",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
+    },
+    {
+      "name": "arca_credentials_list",
+      "product": "shared",
+      "scope": "project:read",
+      "description": "List saved ARCA credential metadata, optionally filtered by login CUIT. Never returns passwords; uses only the connected project and environment.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "cuit": {
+            "type": "string",
+            "pattern": "^\\d{11}$",
+            "description": "ARCA login CUIT, not the represented issuer CUIT."
+          }
+        },
+        "required": [],
+        "additionalProperties": false
+      },
+      "annotations": {
+        "title": "Listar credenciales guardadas de ARCA",
+        "readOnlyHint": true,
+        "destructiveHint": false,
+        "idempotentHint": true,
+        "openWorldHint": true
+      }
+    }
+  ]
+}
