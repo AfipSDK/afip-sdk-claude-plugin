@@ -48,6 +48,6 @@ Para escribir, confirmá el alcance y el ambiente cuando no estén claros. No pe
 
 ## Documentación y soporte
 
-[Factura SDK](https://afipsdk.com/docs/facturasdk/) · [Documentación](https://docs.afipsdk.com/) · [Soporte](https://afipsdk.com/contact/) · [Privacidad](https://afipsdk.com/privacy-policy/) · [Términos](https://afipsdk.com/terms-and-conditions/)
+[Factura SDK](https://afipsdk.com/docs/facturasdk/) · [Documentación](https://afipsdk.com/docs/) · [Soporte](https://afipsdk.com/contact/) · [Privacidad](https://afipsdk.com/privacy-policy/) · [Términos](https://afipsdk.com/terms-and-conditions/)
 
 Copyright Afip SDK. Licencia propietaria; el paquete no otorga una licencia open source. El uso del servicio está sujeto a los términos de Afip SDK existentes.
