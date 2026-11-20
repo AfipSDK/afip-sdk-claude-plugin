@@ -141,6 +141,6 @@ La validación local no reemplaza la validación del directorio de Anthropic. La
 
 ## Documentación y condiciones
 
-[Factura SDK](https://afipsdk.com/docs/facturasdk/) · [Documentación de Afip SDK](https://docs.afipsdk.com/) · [Soporte](https://afipsdk.com/contact/) · [Privacidad](https://afipsdk.com/privacy-policy/) · [Términos](https://afipsdk.com/terms-and-conditions/)
+[Factura SDK](https://afipsdk.com/docs/facturasdk/) · [Documentación de Afip SDK](https://afipsdk.com/docs/) · [Soporte](https://afipsdk.com/contact/) · [Privacidad](https://afipsdk.com/privacy-policy/) · [Términos](https://afipsdk.com/terms-and-conditions/)
 
 Copyright Afip SDK. Licencia propietaria; el paquete no otorga una licencia open source. El uso del servicio está sujeto a los términos de Afip SDK existentes.
